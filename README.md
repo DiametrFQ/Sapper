@@ -10,4 +10,4 @@
 
 4 Do you suspect there is a bomb on the cage? Click on the flag and place it on the cell you need!
 
-5 The game doesn't end (I haven't done that yet)
+5 Find all the cells without bombs and you will win!

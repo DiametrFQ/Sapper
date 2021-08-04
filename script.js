@@ -1,7 +1,7 @@
 window.oncontextmenu = (e) => { return false }
 
 let amount = 11//max 30(?)
-let chance = 4
+let chance = 20
 let colors = ['white', 'blue', 'green', 'red', 'purple', 'yellow', 'pink', 'brown', 'orange']
 
 const flag = document.querySelector("#flag")
@@ -55,7 +55,6 @@ paintingCanvas = (y,x) =>{
                     }
                 }
             }
-            console.log(score)
             if(((score+amount**2)/10) === amount**2)alert('Поздравляю! Ты умеешь играть!')
         }
     }
@@ -169,5 +168,3 @@ for(y = 1; y<amount + 1; y++){
         }
     }
 }
-
-console.log(arrey_bomb);
