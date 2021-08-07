@@ -1,7 +1,7 @@
 window.oncontextmenu = (e) => { return false }
 
-let amount = 11//max 30(?)
-let chance = 20
+let amount = 7//max 30(?)
+let chance = 12
 let colors = ['white', 'blue', 'green', 'red', 'purple', 'yellow', 'pink', 'brown', 'orange']
 
 const flag = document.querySelector("#flag")
@@ -44,18 +44,19 @@ paintingCanvas = (y,x) =>{
         if(arrey_bomb[y][x] === c){
 
             creating('square', ctx, colors[c], (x-1)*300/amount, (y-1)*150/amount, 150/amount)
-            arrey_bomb[y][x] = `${colors[c]}`
-            let score = 0
-            for(let f = 1; f < amount + 1; f++){
-                for(let s = 1; s < amount + 1; s++){
-                    for(let t = 0; t < 9; t++){
 
-                        if(arrey_bomb[f][s] !== t)score++
-                        else score = 0 
-                    }
+            arrey_bomb[y][x] = `${colors[c]}`
+
+            let score = 0
+            for(let f = 1; f < amount+1; f++){
+                for(let s = 1; s < amount+1; s++){
+
+                    if( Number.isInteger(arrey_bomb[f][s]) )score = 0
+
+                    else score++
                 }
             }
-            if(((score+amount**2)/10) === amount**2)alert('Поздравляю! Ты умеешь играть!')
+            if(score === amount**2) alert('Поздравляю! Ты умеешь играть!')
         }
     }
 }
@@ -93,8 +94,8 @@ click = (mausclick, event) =>{
                         }
                         else paintingCanvas(j + 1, i + 1)
 
-                    }else if(mausclick === 'right'){
-
+                    }else if(mausclick === 'right' && (Number.isInteger(arrey_bomb[j+1][i+1]) || arrey_bomb[j+1][i+1] === 'bomb') ){
+                        
                         creating('flag', ctx, 'red', (i*300 + 60)/amount, (j*150 + 20)/amount, 100/amount)
                     }
                 }
