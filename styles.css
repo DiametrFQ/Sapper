@@ -12,7 +12,7 @@ body{
     position: relative;
 }
 
-div{
+.number{
     font-size: 50px;
     width: 40px;
     margin: 0;
@@ -37,4 +37,80 @@ div{
     height: 55px;
     border: 2px solid black;
     background-color: orangered
+}
+#button_settings{
+    padding-top: 7px;
+    padding-left: 5px;
+    position: fixed;
+    width: 72px;
+    height: 53px;
+    bottom: 0;
+    right: 0;
+    border: 2px solid black;
+    background-color: yellow
+}
+
+.container {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 65px;
+    height: 6px;
+    background-color: #333;
+    margin: 8px 0;
+    transition: 0.4s;
+}
+
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-12px, -12px);
+    transform: rotate(45deg) translate(-12px, -12px);
+}
+#settings{
+    font-size: 50px;
+    padding-top: 7px;
+    padding-left: 5px;
+    padding: 20px;
+    margin: 80px;
+    width: 400px;
+    height: 600px;
+    border: 2px solid black;
+    background-color: rgb(255, 153, 0)
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    margin: 18px 0;
+    width: 100%;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #3071a9;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+}
+input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -14px;
 }
