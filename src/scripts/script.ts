@@ -1,11 +1,11 @@
-window.oncontextmenu = (e) => { return false }
+window.oncontextmenu = (e) => { return false; }
 let amount :number = Number(localStorage.getItem('amount'));
 let chance :number = Number(localStorage.getItem('chance'));
 
 if(amount === 0) amount = 11;
 if(chance === 0) chance = 25;
 
-let colors = ['white', 'blue', 'green', 'red', 'purple', 'yellow', 'pink', 'brown', 'orange'];
+let colors :string[] = ['white', 'blue', 'green', 'red', 'purple', 'yellow', 'pink', 'brown', 'orange'];
 
 const code = () :void => {
 
@@ -52,7 +52,7 @@ const code = () :void => {
 
                 arrey_bomb[y][x] = `${colors[c]}`;
 
-                let score = 0;
+                let score :number = 0;
 
                 for(let f = 1; f < amount+1; f++)
                     for(let s = 1; s < amount+1; s++){
@@ -108,7 +108,8 @@ const code = () :void => {
 
     const noFlags = () :void => {
 
-        if(ctxFlag) creating('flag', ctxFlag, 'grey', 36, 17, 100);
+        if(ctxFlag) 
+            creating('flag', ctxFlag, 'grey', 36, 17, 100);
 
         if(flag) flag.onclick = () :void => newFlags();
         if(canvas) canvas.onclick = (event :MouseEvent) :void => click('left', event);
@@ -116,15 +117,19 @@ const code = () :void => {
 
     const newFlags = () :void => {
 
-        if(ctxFlag) creating('flag', ctxFlag, 'red', 36, 17, 100);
+        if(ctxFlag) 
+            creating('flag', ctxFlag, 'red', 36, 17, 100);
 
         if(flag) flag.onclick = () :void => noFlags();
         if(canvas) canvas.onclick = (event :MouseEvent) :void => click('right', event);
     }
 
-    if(ctx) creating('square', ctx, 'grey', 0, 0, 800);//field of play
-    if(ctxFlag) creating('square', ctxFlag, 'grey', 0, 0, 800);//!!topright!!
-    if(ctxFlag) creating('flag', ctxFlag, 'grey', 36, 17, 100);//flag
+    if(ctx) 
+        creating('square', ctx, 'grey', 0, 0, 800);//field of play
+    if(ctxFlag) 
+        creating('square', ctxFlag, 'grey', 0, 0, 800);//!!topright!!
+    if(ctxFlag) 
+        creating('flag', ctxFlag, 'grey', 36, 17, 100);//flag
 
     if(flag) flag.onclick = () :void => newFlags();
     if(canvas) canvas.onclick = (event :MouseEvent) :void => click('left', event);
@@ -142,7 +147,7 @@ const code = () :void => {
             ctx.stroke();
         }
 
-    let nonBombs = 0;
+    let nonBombs :number  = 0;
     let arrey_bomb :string[][] = [];
 
     for(let i = 0; i < amount + 2; i++) arrey_bomb[i] = [];
@@ -247,10 +252,9 @@ const setOFF = () :void =>{
             </center>
             <canvas id="flag"></canvas>
             <span size="10" id='bombs'></span>
+        `;
 
-        `
-        code();
-        
+        code();      
         setON();
     }
 }
