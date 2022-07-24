@@ -9,10 +9,10 @@ let colors = ['white', 'blue', 'green', 'red', 'purple', 'yellow', 'pink', 'brow
 
 const code = () :void => {
 
-    const flag :HTMLCanvasElement|null = document.querySelector("#flag")
+    const flag :HTMLCanvasElement|null = document.querySelector<HTMLCanvasElement>("#flag")
     const ctxFlag :CanvasRenderingContext2D|null|undefined = flag?.getContext('2d')
 
-    const canvas :HTMLCanvasElement|null = document?.querySelector("#canvas")
+    const canvas :HTMLCanvasElement|null = document?.querySelector<HTMLCanvasElement>("#canvas")
     const ctx :CanvasRenderingContext2D|null|undefined = canvas?.getContext('2d');
 
     const creating = (figure :string, ctx :CanvasRenderingContext2D, color :string, x :number, y:number, length:number) :void => {
@@ -157,7 +157,7 @@ const code = () :void => {
                 nonBombs++
             }
         
-    const HTMLbombs :HTMLElement|null = document?.querySelector('#bombs')
+    const HTMLbombs :HTMLElement|null = document?.querySelector<HTMLElement>('#bombs')
     if(HTMLbombs) HTMLbombs.innerHTML = String(amount**2 - nonBombs)
 
     let threat :number = 0
@@ -180,10 +180,10 @@ const code = () :void => {
 
 const setON = () :void =>{
 
-    const buttonSettings :HTMLButtonElement|null = document.querySelector('#button_settings')
+    const buttonSettings :HTMLButtonElement|null = document.querySelector<HTMLButtonElement>('#button_settings')
     if(buttonSettings) buttonSettings.onclick = () :void => {
 
-        const game :HTMLElement|null = document.querySelector('#game')
+        const game :HTMLElement|null = document.querySelector<HTMLElement>('#game')
         if(game) game.innerHTML = 
         `
             <center> 
@@ -198,10 +198,10 @@ const setON = () :void =>{
                 </div> 
             </center> 
         `
-        const InpAmount :HTMLInputElement|null = document.querySelector('#amount')
+        const InpAmount :HTMLInputElement|null = document.querySelector<HTMLInputElement>('#amount')
         if(InpAmount) InpAmount.oninput = function<HTMLInputElement>() :void {
 
-            const InpNameAmount :HTMLElement|null = document.querySelector('#name_amount')
+            const InpNameAmount :HTMLElement|null = document.querySelector<HTMLElement>('#name_amount')
 
             if(InpNameAmount) InpNameAmount.innerHTML = this.value+`X${this.value}`
 
@@ -209,10 +209,10 @@ const setON = () :void =>{
             amount = Number(this.value)
         }
 
-        const InpChance :HTMLInputElement|null = document.querySelector('#chance')
+        const InpChance :HTMLInputElement|null = document.querySelector<HTMLInputElement>('#chance')
         if(InpChance) InpChance.oninput = function<HTMLInputElement>() :void {
 
-            const InpNameChance :HTMLElement|null = document.querySelector('#name_chance')
+            const InpNameChance :HTMLElement|null = document.querySelector<HTMLElement>('#name_chance')
 
             if(InpNameChance) InpNameChance.innerHTML = this.value+`X${this.value}`
 
@@ -225,10 +225,10 @@ const setON = () :void =>{
 
 const setOFF = () :void =>{
 
-    const buttonSettings :HTMLButtonElement|null = document.querySelector('#button_settings')
+    const buttonSettings :HTMLButtonElement|null = document.querySelector<HTMLButtonElement>('#button_settings')
     if(buttonSettings) buttonSettings.onclick = () :void => {
 
-        const game :HTMLElement|null = document.querySelector('#game')
+        const game :HTMLElement|null = document.querySelector<HTMLElement>('#game')
         if(game) game.innerHTML = 
         ` 
             <span id="spanish">
