@@ -255,9 +255,9 @@ const setOFF = () :void =>{
         `;
 
         code();      
-        setON();
-    }
-}
+        setON(); 
+    }            
+}                
 
 code();
 setON();
