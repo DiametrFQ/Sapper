@@ -10,7 +10,7 @@ let colors = ['white', 'blue', 'green', 'red', 'purple', 'yellow', 'pink', 'brow
 const code = () => {
     const flag = document.querySelector("#flag");
     const ctxFlag = flag === null || flag === void 0 ? void 0 : flag.getContext('2d');
-    const canvas = document === null || document === void 0 ? void 0 : document.querySelector("#canvas");
+    const canvas = document.querySelector("#canvas");
     const ctx = canvas === null || canvas === void 0 ? void 0 : canvas.getContext('2d');
     const creating = (figure, ctx, color, x, y, length) => {
         ctx.beginPath();
@@ -46,7 +46,7 @@ const code = () => {
                         else
                             score++;
                     }
-                if (score === amount ** 2)
+                if (score === Math.pow(amount, 2))
                     alert('Поздравляю! Ты умеешь играть!');
             }
     };
@@ -99,11 +99,11 @@ const code = () => {
             canvas.onclick = (event) => click('right', event);
     };
     if (ctx)
-        creating('square', ctx, 'grey', 0, 0, 800); //field of play
+        creating('square', ctx, 'grey', 0, 0, 800);
     if (ctxFlag)
-        creating('square', ctxFlag, 'grey', 0, 0, 800); //!!topright!!
+        creating('square', ctxFlag, 'grey', 0, 0, 800);
     if (ctxFlag)
-        creating('flag', ctxFlag, 'grey', 36, 17, 100); //flag
+        creating('flag', ctxFlag, 'grey', 36, 17, 100);
     if (flag)
         flag.onclick = () => newFlags();
     if (canvas)
@@ -135,17 +135,15 @@ const code = () => {
             }
     const HTMLbombs = document === null || document === void 0 ? void 0 : document.querySelector('#bombs');
     if (HTMLbombs)
-        HTMLbombs.innerHTML = String(amount ** 2 - nonBombs);
+        HTMLbombs.innerHTML = String(Math.pow(amount, 2) - nonBombs);
     let threat = 0;
     for (let y = 1; y < amount + 1; y++)
         for (let x = 1; x < amount + 1; x++)
             if (arrey_bomb[y][x] === 'non') {
-                for (let f = -1; f < 2; f++) {
-                    for (let s = -1; s < 2; s++) {
+                for (let f = -1; f < 2; f++)
+                    for (let s = -1; s < 2; s++)
                         if (arrey_bomb[y + f][x + s] === 'bomb')
                             threat++;
-                    }
-                }
                 arrey_bomb[y][x] = String(threat);
                 threat = 0;
             }
@@ -222,3 +220,4 @@ const setOFF = () => {
 };
 code();
 setON();
+//# sourceMappingURL=script.js.map

@@ -12,7 +12,7 @@ const code = () :void => {
     const flag :HTMLCanvasElement|null = document.querySelector<HTMLCanvasElement>("#flag");
     const ctxFlag :CanvasRenderingContext2D|null|undefined = flag?.getContext('2d');
 
-    const canvas :HTMLCanvasElement|null = document?.querySelector<HTMLCanvasElement>("#canvas");
+    const canvas :HTMLCanvasElement|null = document.querySelector<HTMLCanvasElement>("#canvas");
     const ctx :CanvasRenderingContext2D|null|undefined = canvas?.getContext('2d');
 
     const creating = (figure :string, ctx :CanvasRenderingContext2D, color :string, x :number, y:number, length:number) :void => {
@@ -137,13 +137,15 @@ const code = () :void => {
 
     if(ctx) 
         for(let f = 0; f < amount; f++){
+
             ctx.beginPath();
-            ctx.moveTo(0, f*150/amount);
-            ctx.lineTo(800, f*150/amount);
+            ctx.moveTo(0, f*150 / amount);
+            ctx.lineTo(800, f*150 / amount);
             ctx.stroke();
+
             ctx.beginPath();
-            ctx.moveTo(f*300/amount, 0);
-            ctx.lineTo(f*300/amount, 800);
+            ctx.moveTo(f*300 / amount, 0);
+            ctx.lineTo(f*300 / amount, 800);
             ctx.stroke();
         }
 
@@ -171,12 +173,10 @@ const code = () :void => {
         for(let x = 1; x < amount + 1; x++)
             if(arrey_bomb[y][x] === 'non'){
 
-                for(let f = -1; f < 2; f++){
-                    for(let s = -1; s < 2; s++){
-
+                for(let f = -1; f < 2; f++)
+                    for(let s = -1; s < 2; s++)
                         if(arrey_bomb[y + f][x + s] === 'bomb') threat++;
-                    }
-                }
+                    
                 arrey_bomb[y][x] = String(threat);
                 threat = 0;
             }
