@@ -46,7 +46,7 @@ const code = () => {
                         else
                             score++;
                     }
-                if (score === Math.pow(amount, 2))
+                if (score === amount ** 2)
                     alert('Поздравляю! Ты умеешь играть!');
             }
     };
@@ -135,7 +135,7 @@ const code = () => {
             }
     const HTMLbombs = document === null || document === void 0 ? void 0 : document.querySelector('#bombs');
     if (HTMLbombs)
-        HTMLbombs.innerHTML = String(Math.pow(amount, 2) - nonBombs);
+        HTMLbombs.innerHTML = String(amount ** 2 - nonBombs);
     let threat = 0;
     for (let y = 1; y < amount + 1; y++)
         for (let x = 1; x < amount + 1; x++)
