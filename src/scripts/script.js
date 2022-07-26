@@ -9,9 +9,9 @@ if (chance === 0)
 let colors = ['white', 'blue', 'green', 'red', 'purple', 'yellow', 'pink', 'brown', 'orange'];
 const code = () => {
     const flag = document.querySelector("#flag");
-    const ctxFlag = flag === null || flag === void 0 ? void 0 : flag.getContext('2d');
+    const ctxFlag = flag.getContext('2d');
     const canvas = document.querySelector("#canvas");
-    const ctx = canvas === null || canvas === void 0 ? void 0 : canvas.getContext('2d');
+    const ctx = canvas.getContext('2d');
     const creating = (figure, ctx, color, x, y, length) => {
         ctx.beginPath();
         ctx.fillStyle = color;
@@ -35,8 +35,7 @@ const code = () => {
         }
         for (let c = 0; c < colors.length; c++)
             if (Number(arrey_bomb[y][x]) === c) {
-                if (ctx)
-                    creating('square', ctx, colors[c], (x - 1) * 300 / amount, (y - 1) * 150 / amount, 150 / amount);
+                creating('square', ctx, colors[c], (x - 1) * 300 / amount, (y - 1) * 150 / amount, 150 / amount);
                 arrey_bomb[y][x] = `${colors[c]}`;
                 let score = 0;
                 for (let f = 1; f < amount + 1; f++)
@@ -51,16 +50,14 @@ const code = () => {
             }
     };
     const white = (j, i) => {
-        for (let f = 0; f < 3; f++) {
-            for (let s = 0; s < 3; s++) {
+        for (let f = 0; f < 3; f++)
+            for (let s = 0; s < 3; s++)
                 if (arrey_bomb[j + f][i + s] === '0') {
                     paintingCanvas(j + f, i + s);
                     white(j + f - 1, i + s - 1);
                 }
                 else
                     paintingCanvas(j + f, i + s);
-            }
-        }
     };
     const click = (mausclick, event) => {
         let mauseX = event.offsetX;
@@ -68,59 +65,49 @@ const code = () => {
         for (let i = 0; i < amount; i++)
             if (i * 800 / amount < mauseX && mauseX < (i + 1) * 800 / amount)
                 for (let j = 0; j < amount; j++)
-                    if (j * 800 / amount < mauseY && mauseY < (j + 1) * 800 / amount)
+                    if (j * 800 / amount < mauseY && mauseY < (j + 1) * 800 / amount) {
                         if (mausclick === 'left') {
                             if (Number(arrey_bomb[j + 1][i + 1]) === 0) {
                                 paintingCanvas(j + 1, i + 1);
                                 white(j, i);
+                                break;
                             }
                             else
                                 paintingCanvas(j + 1, i + 1);
+                            break;
                         }
-                        else if (mausclick === 'right' && (Number.isInteger(arrey_bomb[j + 1][i + 1]) || arrey_bomb[j + 1][i + 1] === 'bomb')) {
-                            if (ctx)
-                                creating('flag', ctx, 'red', (i * 300 + 60) / amount, (j * 150 + 20) / amount, 100 / amount);
+                        else if (mausclick === 'right' && (arrey_bomb[j + 1][i + 1] === 'bomb' || Number.isInteger(Number(arrey_bomb[j + 1][i + 1])))) {
+                            creating('flag', ctx, 'red', (i * 300 + 60) / amount, (j * 150 + 20) / amount, 100 / amount);
+                            break;
                         }
+                    }
     };
     const noFlags = () => {
-        if (ctxFlag)
-            creating('flag', ctxFlag, 'grey', 36, 17, 100);
-        if (flag)
-            flag.onclick = () => newFlags();
-        if (canvas)
-            canvas.onclick = (event) => click('left', event);
+        creating('flag', ctxFlag, 'grey', 36, 17, 100);
+        flag.onclick = () => newFlags();
+        canvas.onclick = (event) => click('left', event);
     };
     const newFlags = () => {
-        if (ctxFlag)
-            creating('flag', ctxFlag, 'red', 36, 17, 100);
-        if (flag)
-            flag.onclick = () => noFlags();
-        if (canvas)
-            canvas.onclick = (event) => click('right', event);
+        creating('flag', ctxFlag, 'red', 36, 17, 100);
+        flag.onclick = () => noFlags();
+        canvas.onclick = (event) => click('right', event);
     };
-    if (ctx)
-        creating('square', ctx, 'grey', 0, 0, 800);
-    if (ctxFlag)
-        creating('square', ctxFlag, 'grey', 0, 0, 800);
-    if (ctxFlag)
-        creating('flag', ctxFlag, 'grey', 36, 17, 100);
-    if (flag)
-        flag.onclick = () => newFlags();
-    if (canvas)
-        canvas.onclick = (event) => click('left', event);
-    if (canvas)
-        canvas.oncontextmenu = (event) => click('right', event);
-    if (ctx)
-        for (let f = 0; f < amount; f++) {
-            ctx.beginPath();
-            ctx.moveTo(0, f * 150 / amount);
-            ctx.lineTo(800, f * 150 / amount);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(f * 300 / amount, 0);
-            ctx.lineTo(f * 300 / amount, 800);
-            ctx.stroke();
-        }
+    creating('square', ctx, 'grey', 0, 0, 800);
+    creating('square', ctxFlag, 'grey', 0, 0, 800);
+    creating('flag', ctxFlag, 'grey', 36, 17, 100);
+    flag.onclick = () => newFlags();
+    canvas.onclick = (event) => click('left', event);
+    canvas.oncontextmenu = (event) => click('right', event);
+    for (let f = 0; f < amount; f++) {
+        ctx.beginPath();
+        ctx.moveTo(0, f * 150 / amount);
+        ctx.lineTo(800, f * 150 / amount);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(f * 300 / amount, 0);
+        ctx.lineTo(f * 300 / amount, 800);
+        ctx.stroke();
+    }
     let nonBombs = 0;
     let arrey_bomb = [];
     for (let i = 0; i < amount + 2; i++)
@@ -133,9 +120,8 @@ const code = () => {
                 arrey_bomb[y][x] = "non";
                 nonBombs++;
             }
-    const HTMLbombs = document === null || document === void 0 ? void 0 : document.querySelector('#bombs');
-    if (HTMLbombs)
-        HTMLbombs.innerHTML = String(amount ** 2 - nonBombs);
+    const HTMLbombs = document.querySelector('#bombs');
+    HTMLbombs.innerHTML = String(amount ** 2 - nonBombs);
     let threat = 0;
     for (let y = 1; y < amount + 1; y++)
         for (let x = 1; x < amount + 1; x++)
@@ -150,12 +136,10 @@ const code = () => {
 };
 const setON = () => {
     const buttonSettings = document.querySelector('#button_settings');
-    if (buttonSettings)
-        buttonSettings.onclick = () => {
-            const game = document.querySelector('#game');
-            if (game)
-                game.innerHTML =
-                    `
+    buttonSettings.onclick = () => {
+        const game = document.querySelector('#game');
+        game.innerHTML =
+            `
             <center> 
                 <div id='settings'>
                     <div id="name">Количество ячеек</div>
@@ -168,35 +152,29 @@ const setON = () => {
                 </div> 
             </center> 
         `;
-            const InpAmount = document.querySelector('#amount');
-            if (InpAmount)
-                InpAmount.oninput = function () {
-                    const InpNameAmount = document.querySelector('#name_amount');
-                    if (InpNameAmount)
-                        InpNameAmount.innerHTML = this.value + `X${this.value}`;
-                    localStorage.setItem('amount', this.value);
-                    amount = Number(this.value);
-                };
-            const InpChance = document.querySelector('#chance');
-            if (InpChance)
-                InpChance.oninput = function () {
-                    const InpNameChance = document.querySelector('#name_chance');
-                    if (InpNameChance)
-                        InpNameChance.innerHTML = this.value + `X${this.value}`;
-                    localStorage.setItem('chance', this.value);
-                    chance = Number(this.value);
-                };
-            setOFF();
+        const InpAmount = document.querySelector('#amount');
+        const InpChance = document.querySelector('#chance');
+        InpAmount.oninput = function () {
+            const InpNameAmount = document.querySelector('#name_amount');
+            InpNameAmount.innerHTML = this.value + `X${this.value}`;
+            localStorage.setItem('amount', this.value);
+            amount = Number(this.value);
         };
+        InpChance.oninput = function () {
+            const InpNameChance = document.querySelector('#name_chance');
+            InpNameChance.innerHTML = this.value + `X${this.value}`;
+            localStorage.setItem('chance', this.value);
+            chance = Number(this.value);
+        };
+        setOFF();
+    };
 };
 const setOFF = () => {
     const buttonSettings = document.querySelector('#button_settings');
-    if (buttonSettings)
-        buttonSettings.onclick = () => {
-            const game = document.querySelector('#game');
-            if (game)
-                game.innerHTML =
-                    ` 
+    buttonSettings.onclick = () => {
+        const game = document.querySelector('#game');
+        game.innerHTML =
+            ` 
             <span id="spanish">
                 <div class = 'number'><font color='white' > 0 </font></div>
                 <div class = 'number'><font color='blue'  > 1 </font></div>
@@ -214,9 +192,9 @@ const setOFF = () => {
             <canvas id="flag"></canvas>
             <span size="10" id='bombs'></span>
         `;
-            code();
-            setON();
-        };
+        code();
+        setON();
+    };
 };
 code();
 setON();
