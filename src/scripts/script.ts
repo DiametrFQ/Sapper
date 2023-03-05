@@ -58,8 +58,20 @@ const code = () => {
     
         face.src = './../../public/FaceDead.png';
         clearInterval(Interval)
+        length = 800/ amountFields
 
-
+        for (let x = 0; x <= amountFields+1; x++) {
+            for (let y = 0; y <= amountFields+1; y++) {
+                if(arrey_bomb[y][x] === 'bomb'){
+                    ctx.beginPath()
+                    ctx.fillStyle = 'black'
+                    //draw('square', ctx, 'black', ((x-1)*300) / amountFields, ((y-1)*150) / amountFields, 140 / amountFields)
+                    ctx.arc(((x-1)*300) / (amountFields) + (150/amountFields) , ((y-1)*150) / amountFields + (75/amountFields), 64/amountFields, 0, 2*Math.PI, false);
+                    //ctx.arc( x*100*length/4, ((y-1)*150) / amountFields, 4, 0, 2*Math.PI, false);
+                    ctx.fill()
+                }  
+            }
+        }
     }
 
     const drawQuestions = (x :number, y:number, length:number) => {
@@ -267,8 +279,8 @@ const code = () => {
     const haveBomb = () => {
         ///Выбераем случайную клетку которая будет бомбой
         ///Выбераем от 1 а не от нуля, так как клетка находит у соседей бомбу, но индекса [-1] нет
-        const x = Math.floor(Math.random() * (amountFields - 1) + 1)
-        const y = Math.floor(Math.random() * (amountFields - 1) + 1)
+        const x = Math.floor(Math.random() * (amountFields) + 1)
+        const y = Math.floor(Math.random() * (amountFields) + 1)
 
         if(arrey_bomb[y][x] === "bomb"){
             haveBomb()
@@ -277,7 +289,7 @@ const code = () => {
             arrey_bomb[y][x] = "bomb"
         }
     }
-    for(let i = 0; i < countBombs; i++){
+    for(let i = 0; i < countBombs+2; i++){
         haveBomb();
     }// VK Version
         
