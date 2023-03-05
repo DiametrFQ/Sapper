@@ -15,29 +15,35 @@
     <body>
         <span id='game'>
 
-            <span id="spanish">
-                    <div class = 'number'><font color='white' > 0 </font></div>
-                    <div class = 'number'><font color='blue'  > 1 </font></div>
-                    <div class = 'number'><font color='green' > 2 </font></div>
-                    <div class = 'number'><font color='red'   > 3 </font></div>
-                    <div class = 'number'><font color='purple'> 4 </font></div>
-                    <div class = 'number'><font color='yellow'> 5 </font></div>
-                    <div class = 'number'><font color='pink'  > 6 </font></div>
-                    <div class = 'number'><font color='brown' > 7 </font></div>
-                    <div class = 'number'><font color='orange'> 8 </font></div>
+            <span id="spanish" >
+                <div class = 'number'><font color='yellow' > 0 </font></div>
+                <div class = 'number'><font color='blue'   > 1 </font></div>
+                <div class = 'number'><font color='green'  > 2 </font></div>
+                <div class = 'number'><font color='red'    > 3 </font></div>
+                <div class = 'number'><font color='#00008b'> 4 </font></div>
+                <div class = 'number'><font color='#964b00'> 5 </font></div>
+                <div class = 'number'><font color='#30d5c8'> 6 </font></div>
+                <div class = 'number'><font color='black'  > 7 </font></div>
+                <div class = 'number'><font color='white'  > 8 </font></div>
             </span>
 
             <center>
                 <canvas id="canvas"></canvas>
             </center>
 
+            <span id='seconds'> 999 </span>
+
             <canvas id="flag"></canvas>
 
             <span size="10" id='bombs'></span>
 
+            <span id="faceSpan">
+                <img id="img" src="./public/FaceStandart.png">
+            </span>
+
         </span>
 
-        <div id='button_settings' class="container" onclick="myFunction(this)">
+        <div id='button_settings' class="container">
 
             <div class="bar1"></div>
             <div class="bar2"></div>
