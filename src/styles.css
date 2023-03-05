@@ -4,14 +4,17 @@ body{
 }
 
 #canvas{
-    top: -500px;
     width: 800px;
     height: 800px;
     border: 5px solid black;
     margin: 16px;
     position: relative;
 }
-
+#spanish{
+    top: 0;
+    left: 0;
+    position: fixed;
+}
 .number{
     text-align: center;
     font-size: 50px;
@@ -32,8 +35,10 @@ body{
 
 #faceSpan{
     top: 0px;
-    right: 82px;
-    position: fixed;
+    /* position: fixed; */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     width: 80px;
     height: 80px;
 }
